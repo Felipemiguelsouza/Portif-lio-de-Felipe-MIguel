@@ -1,0 +1,123 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo geral da página */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    /* fonte do texto */
+    color: #0e0707;
+    /* cor do texto */
+    background-color: #ab87ec;
+    /* roxo clarinho, suave para os olhos */
+    line-height: 1.8;
+    /* espaço entre linhas */
+    margin: 0;
+    /* remove margem padrão do navegador */
+    padding: 0;
+    /* remove padding padrão do navegador */
+}
+
+/* Estilo do cabeçalho */
+header {
+    background-color: #f0e6fa;
+    /* cor de fundo da caixinha */
+    border-radius: 10px;
+    /* cantos arredondados */
+    padding: 20px;
+    /* espaço interno */
+    text-align: center;
+    /* centraliza o conteúdo */
+    max-width: 600px;
+    /* largura máxima */
+    margin: 20px auto;
+    /* centraliza horizontalmente na página */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* sombra leve para destaque */
+}
+
+/* Estilo dos parágrafos dentro do header */
+header p {
+    margin: 5px 0;
+    /* espaço entre linhas dentro do header */
+}
+
+/* Estilo do título dentro do header */
+header h1 {
+    margin-bottom: 10px;
+    font-size: 1.8em;
+    color: #222;
+}
+
+/* Estilo do menu de navegação */
+section {
+    margin: 30px auto;
+    /* espaço acima e abaixo */
+    padding: 20px;
+    /* espaço interno */
+    max-width: 800px;
+    /* largura máxima da seção */
+    background-color: #f0e6fa;
+    /* roxo muito clarinho */
+    border-radius: 10px;
+    /* cantos arredondados */
+}
+
+/* Estilo dos títulos e parágrafos */
+h1,
+h2,
+h3 {
+    text-align: center;
+    /* centraliza os títulos */
+}
+
+/* Estilo dos parágrafos */
+p {
+    text-align: center;
+    /* centraliza os parágrafos */
+    margin: 5px 0;
+    /* espaço entre os parágrafos */
+}
+
+/* Estilo das listas */
+ul {
+    list-style-type: disc;
+    /* bolinhas padrão */
+    padding-left: 40px;
+    /* espaço à esquerda para as bolinhas */
+}
+
+/* Estilo dos itens da lista */
+li {
+    margin-bottom: 8px;
+    /* espaço entre os itens da lista */
+}
+
+/* Estilo dos links */
+a {
+    color: #35adf3;
+    text-decoration: none;
+}
+
+/* Estilo dos links ao passar o mouse */
+a:hover {
+    color: #a200ff;
+}
+
+
+@media (max-width: 768px) {
+
+    /* Ajuste do layout para telas menores */
+    main {
+        padding: 20px 10px;
+    }
+
+    /* Ajuste do header e footer para telas menores */
+    header,
+    footer {
+        padding: 10px;
+    }
+}
