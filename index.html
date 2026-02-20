@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio — Felipe Miguel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Cursor customizado -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <!-- Canvas de partículas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <header>
+    <p class="header-label">Portfólio Profissional</p>
+    <h1 data-text="Felipe Miguel Souza da Silva">Felipe Miguel<br>Souza da Silva</h1>
+    <address>
+      Rua Santa Lucia N° 284 &nbsp;·&nbsp; Vargem Grande Paulista - SP<br>
+      (11) 99222-5025 &nbsp;·&nbsp;
+      <a href="mailto:felipemiguel55634@gmail.com">felipemiguel55634@gmail.com</a>
+    </address>
+    <div class="scroll-hint">scroll</div>
+  </header>
+
+  <main>
+
+    <section>
+      <h2>Competências</h2>
+      <p>
+        Experiência em atendimento ao cliente, organização de produtos, controle de estoque e perfumaria —
+        com boa comunicação, responsabilidade e facilidade para aprender as rotinas de farmácia.
+      </p>
+    </section>
+
+    <section>
+      <h2>Experiência</h2>
+
+      <article>
+        <span class="badge badge-estágio">Estágio</span>
+        <h3>G2G Fibra Networking — Auxiliar de Administração de SAC</h3>
+        <p>Período: 24/11/2023 a 16/12/2024</p>
+        <ul>
+          <li>Atendimento ao cliente, presencial e remoto.</li>
+          <li>Escuta ativa para entender dúvidas, reclamações e solicitações.</li>
+          <li>Organização de dados e documentos.</li>
+          <li>Trabalho em equipe com outros departamentos.</li>
+          <li>Uso frequente de computadores e sistemas internos.</li>
+        </ul>
+      </article>
+
+      <article>
+        <span class="badge badge-clt">CLT</span>
+        <h3>Drogaria Santavenida — Auxiliar de Perfumaria e Estoquista</h3>
+        <p>Período: 15/03/2025 a 18/06/2025</p>
+        <ul>
+          <li>Atendimento ao cliente no balcão.</li>
+          <li>Orientação básica sobre produtos de perfumaria e higiene.</li>
+          <li>Controle e conferência de estoque.</li>
+          <li>Atenção à validade e conservação de produtos.</li>
+          <li>Organização do ambiente de trabalho.</li>
+          <li>Responsabilidade com produtos e valores.</li>
+          <li>Boa comunicação e postura profissional.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section>
+      <h2>Formação</h2>
+
+      <article>
+        <span class="badge badge-curso">Ensino Médio</span>
+        <h3>E.E. Leonardo Soares Rodrigues</h3>
+        <ul>
+          <li>3° Ano do Ensino Médio — concluído em 2025</li>
+        </ul>
+      </article>
+
+      <article>
+        <span class="badge badge-curso">Cursos</span>
+        <h3>Informac Teccursos</h3>
+        <ul>
+          <li>Informática Básica e Avançada — Microsoft Windows 10, Word, Excel, PowerPoint, Internet — 64h (2018)</li>
+          <li>Empreendedorismo — 8h (2022)</li>
+        </ul>
+      </article>
+
+      <article>
+        <span class="badge badge-curso">Treinamento</span>
+        <h3>EAD Full Cam</h3>
+        <ul>
+          <li>ISP — Treinamento Comercial Fullcam (G2G Fibra Networking)</li>
+        </ul>
+      </article>
+
+      <article>
+        <span class="badge badge-curso">EAD</span>
+        <h3>Kultivi</h3>
+        <ul>
+          <li>Conexões Estratégicas e Networking Internacional — 1h (2024)</li>
+        </ul>
+      </article>
+    </section>
+
+    <section>
+      <h2>Objetivo</h2>
+      <p>
+        Atuar de forma responsável e comprometida, aplicando minhas habilidades,
+        desenvolvendo novos conhecimentos e contribuindo para os resultados da empresa.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Felipe Miguel Souza da Silva — Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // ─── CURSOR ───────────────────────────────────────
+    const cursor = document.getElementById('cursor');
+    const ring   = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
+    });
+
+    function animRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+      requestAnimationFrame(animRing);
+    }
+    animRing();
+
+    // ─── PARTÍCULAS ───────────────────────────────────
+    const canvas = document.getElementById('particle-canvas');
+    const ctx    = canvas.getContext('2d');
+    let W, H, particles = [];
+
+    function resize() {
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const COLORS = ['#a855f7','#c084fc','#7b3fe4','#f0abfc','#e9d5ff'];
+
+    class Particle {
+      constructor() { this.reset(true); }
+      reset(init = false) {
+        this.x  = Math.random() * W;
+        this.y  = init ? Math.random() * H : H + 10;
+        this.r  = Math.random() * 2 + 0.5;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = -(Math.random() * 0.5 + 0.15);
+        this.alpha = 0;
+        this.maxAlpha = Math.random() * 0.6 + 0.2;
+        this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+        this.life = 0;
+        this.maxLife = Math.random() * 400 + 200;
+      }
+      update() {
+        this.x += this.vx; this.y += this.vy; this.life++;
+        const t = this.life / this.maxLife;
+        this.alpha = t < 0.2 ? (t / 0.2) * this.maxAlpha
+                   : t > 0.7 ? ((1 - t) / 0.3) * this.maxAlpha
+                   : this.maxAlpha;
+        if (this.life > this.maxLife) this.reset();
+      }
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle   = this.color;
+        ctx.shadowColor = this.color;
+        ctx.shadowBlur  = 8;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    for (let i = 0; i < 120; i++) particles.push(new Particle());
+
+    function loop() {
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(loop);
+    }
+    loop();
+
+    // ─── SCROLL REVEAL ────────────────────────────────
+    const sections = document.querySelectorAll('section');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(s => obs.observe(s));
+
+    // ─── TILT NOS CARDS ───────────────────────────────
+    document.querySelectorAll('article').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width  - 0.5) * 10;
+        const y = ((e.clientY - r.top)  / r.height - 0.5) * -10;
+        card.style.transform = `translateY(-6px) scale(1.01) rotateX(${y}deg) rotateY(${x}deg)`;
+        card.style.transition = 'transform 0.1s ease';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+        card.style.transition = 'transform 0.4s ease';
+      });
+    });
+  </script>
+
+</body>
+</html>
